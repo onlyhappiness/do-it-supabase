@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { Layout } from "antd";
+import { Button, Layout, Row, Space } from "antd";
+import { supaClient } from "@client/supa-client";
 
 const { Header, Sider, Content } = Layout;
 
 const SiderWidth = 200;
 
 export default function MainLayout() {
+  const logOut = async () => {
+    const { error } = await supaClient.auth.signOut();
+
+    console.log("error: ", error);
+  };
+
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
@@ -21,7 +28,13 @@ export default function MainLayout() {
           }}
           theme="light"
           width={SiderWidth}
-        />
+        >
+          <Space>
+            {/* <Button onClick={login}>로그인</Button> */}
+
+            <Button onClick={logOut}>로그아웃</Button>
+          </Space>
+        </Sider>
 
         <Layout
           style={{

@@ -1,19 +1,28 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
+import { supaClient } from "@client/supa-client";
 
 export default function Login() {
   const [form] = Form.useForm();
 
-  const onSubmit = async ({ email, password }) => {
+  const onLogin = async ({ email, password }) => {
     console.log("email: ", email);
     console.log("password: ", password);
+
+    const { data, error } = await supaClient.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    console.log("data: ", data);
+    console.log("error: ", error);
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-[#f6f6f6]">
       <Form
         form={form}
-        onFinish={onSubmit}
+        onFinish={onLogin}
         layout="vertical"
         className="bg-white w-[400px] p-3 py-6 rounded-lg"
       >
