@@ -6,9 +6,9 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      let { data: test, error } = await supaClient.from("test").select();
+      let { data, error } = await supaClient.from("test").select();
 
-      setData(test);
+      setData(data);
     })();
   }, []);
 

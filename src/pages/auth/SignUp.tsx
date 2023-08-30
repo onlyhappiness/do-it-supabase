@@ -51,13 +51,7 @@ export default function SignUp() {
           />
         </Form.Item>
 
-        <Button
-          onClick={() => form.submit()}
-          //   className="bg-[#EF3346] text-white mt-12 py-3 flex justify-center items-center w-full rounded"
-          // type="primary"
-        >
-          로그인
-        </Button>
+        <Button onClick={() => form.submit()}>로그인</Button>
       </Form>
     </div>
   );
